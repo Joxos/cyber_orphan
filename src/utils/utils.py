@@ -1,0 +1,40 @@
+from utils.config import (
+    CELL_WIDTH,
+    SIDEBAR_WIDTH,
+    BOTTOM_SIDEBAR_HEIGHT,
+    COLUMN_COUNT,
+    ROW_COUNT,
+)
+from core.layout import layout_manager, LAYOUTS
+
+
+def mix_color(a, b):
+    return ((a[0] + b[0]) // 2, (a[1] + b[1]) // 2, (a[2] + b[2] // 2))
+
+
+def grid_to_central_coordinate(row, column):
+    x = (
+        column * CELL_WIDTH  # column starts from 0
+        + CELL_WIDTH / 2
+    )
+    y = (
+        row * CELL_WIDTH  # row starts from 0
+        + CELL_WIDTH / 2
+    )
+    return [x, y]
+
+
+def coordinate_to_grid(x, y):
+    if layout_manager.on_layout(LAYOUTS.GRID, x, y):
+        column = (x - SIDEBAR_WIDTH) // CELL_WIDTH
+        row = (y - BOTTOM_SIDEBAR_HEIGHT) // CELL_WIDTH
+        if column < COLUMN_COUNT and row < ROW_COUNT:
+            return [row, column]
+        else:
+            return [row - 1, column - 1]
+
+
+def row_column_on_grid(row, column):
+    if row < 0 or row >= ROW_COUNT or column < 0 or column >= COLUMN_COUNT:
+        return False
+    return True

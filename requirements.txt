@@ -1,0 +1,6 @@
+arcade
+loguru
+opensimplex
+# SQL Support
+# pymysql
+# mariadb

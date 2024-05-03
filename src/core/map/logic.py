@@ -24,6 +24,9 @@ def map_init(game, event: OnGameInit, em: EventsManager):
         CELL_WIDTH, (205, 166, 119), outer_alpha=255
     )
 
+    # generate basic events
+    game.map.generate_map_events()
+
 
 subscriptions = {
     OnGameInit: map_init,

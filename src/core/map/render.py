@@ -24,6 +24,15 @@ def map_setup(game, event: OnGameSetup, em: EventsManager):
 
     game.draw_list.append(game.cell_sprites)
 
+    for map_event in game.map.map_events:
+        map_event.sprite = arcade.Sprite(scale=0.06)
+        (
+            map_event.sprite.center_x,
+            map_event.sprite.center_y,
+        ) = grid_to_central_coordinate(map_event.location[0], map_event.location[1])
+        map_event.sprite.texture = arcade.load_texture(map_event.image_path)
+        game.draw_list.append(map_event.sprite)
+
 
 subscriptions = {
     OnGameSetup: map_setup,

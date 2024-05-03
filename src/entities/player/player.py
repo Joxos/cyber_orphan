@@ -6,3 +6,6 @@ class Player:
         self.yang = yang
         self.sanity = sanity
         self.max_sanity = max_sanity
+
+    def yang_damage(self, amount):
+        self.yang -= amount

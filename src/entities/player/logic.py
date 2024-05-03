@@ -17,7 +17,6 @@ def player_init(game, event: OnGameInit, em: EventsManager):
     )
     game.player_sprite.center_x = game.player.x * CELL_WIDTH + CELL_WIDTH / 2
     game.player_sprite.center_y = game.player.y * CELL_WIDTH + CELL_WIDTH / 2
-    game.draw_list.append(game.player_sprite)
 
 
 def player_move(game, event: OnKeyPress, em: EventsManager):

@@ -38,10 +38,13 @@ SCREEN_WIDTH = GRID_WIDTH
 SCREEN_HEIGHT = GRID_HEIGHT
 
 # consequence matters
+# 1. game_logging is the first one for logging
+# 2. when drawing, the order matters to determine which layer is on top
 DEFAULT_MODULES = [
     "utils.game_logging",
     "core.basic_logic",
     "core.map",
+    "structures.home",
     "entities.player",
 ]
 LOG_LEVEL = "DEBUG"

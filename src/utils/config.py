@@ -9,7 +9,7 @@ COLUMN_COUNT = 20
 EVENT_PROBABILITY = 0.01
 
 # display configuration
-GAME_TITLE = "The Action"
+GAME_TITLE = "Light and Darkness"
 
 # cell and boarder
 CELL_WIDTH = 40

@@ -4,11 +4,11 @@ from core.events import (
     EventsManager,
     OnGameInit,
 )
-from utils.config import ROW_COUNT, COLUMN_COUNT, CELL_WIDTH, SEED
+from utils.config import ROW_COUNT, COLUMN_COUNT, CELL_WIDTH
 
 
 def map_init(game, event: OnGameInit, em: EventsManager):
-    game.map = Map(ROW_COUNT, COLUMN_COUNT, SEED)
+    game.map = Map(ROW_COUNT, COLUMN_COUNT)
 
     # 1d list for arcade to render
     game.cell_sprites = arcade.SpriteList()

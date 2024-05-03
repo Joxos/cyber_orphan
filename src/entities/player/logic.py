@@ -12,8 +12,8 @@ def player_init(game, event: OnGameInit, em: EventsManager):
     game.player = Player(*game.map.center_index)
 
     game.player_sprite = arcade.Sprite(
-        f"{ROOT_PATH}/../assets/player.png",
-        scale=0.1,
+        f"{ROOT_PATH}/../assets/detector.png",
+        scale=0.15,
     )
     game.player_sprite.center_x = game.player.x * CELL_WIDTH + CELL_WIDTH / 2
     game.player_sprite.center_y = game.player.y * CELL_WIDTH + CELL_WIDTH / 2

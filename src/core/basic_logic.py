@@ -2,6 +2,7 @@ from core.events import OnDraw, OnGameInit, EventsManager, OnMouseMotion
 
 
 def on_mouse_motion(game, event: OnMouseMotion, em: EventsManager):
+    # realtime mouse position
     game.mouse_x = event.x
     game.mouse_y = event.y
 
@@ -20,6 +21,7 @@ def on_game_init(game, event, em: EventsManager):
 
     game.mouse_x = 0
     game.mouse_y = 0
+
 
 subscriptions = {
     OnDraw: on_draw,

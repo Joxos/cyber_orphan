@@ -1,4 +1,4 @@
-# The Action
+# Light and Darkness
 
 ## Installation
 
@@ -7,16 +7,6 @@ pip install -r requirements.txt
 ```
 
 ## Architecture
-
-- `config.py`: Constants and configurations.
-- `events.py`
-- `game_logging.py`
-- `game_logic.py`
-- `map.py`
-- `render.py`
-- `sidebar.py`
-- `the_action.py`
-- `utils.py`
 
 Events are used for connections between modules.
 

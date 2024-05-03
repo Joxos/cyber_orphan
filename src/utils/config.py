@@ -1,3 +1,5 @@
+import os
+
 # map configuration
 # Set how many rows and columns we will have
 ROW_COUNT = 20
@@ -36,10 +38,8 @@ SCREEN_WIDTH = GRID_WIDTH
 SCREEN_HEIGHT = GRID_HEIGHT
 
 # consequence matters
-DEFAULT_MODULES = ["utils.game_logging", "core.basic_logic", "core.map.render"]
+DEFAULT_MODULES = ["utils.game_logging", "core.basic_logic", "core.map"]
 LOG_LEVEL = "DEBUG"
 
-# army configuration
-SPEED_PRECISION = 0.1
-# anime configuration
-ANIME_DURATION = 3
+# project structure
+ROOT_PATH = os.path.dirname(os.path.dirname(f"{os.path.abspath(__file__)}"))

@@ -11,6 +11,5 @@ if __name__ == "__main__":
     events_manager.new_event(BeforeGameInit())
 
     game = Game(SCREEN_WIDTH, SCREEN_HEIGHT, GAME_TITLE, events_manager)
-    print(SCREEN_HEIGHT, SCREEN_WIDTH)
     game.setup()
     arcade.run()

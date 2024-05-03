@@ -38,7 +38,12 @@ SCREEN_WIDTH = GRID_WIDTH
 SCREEN_HEIGHT = GRID_HEIGHT
 
 # consequence matters
-DEFAULT_MODULES = ["utils.game_logging", "core.basic_logic", "core.map"]
+DEFAULT_MODULES = [
+    "utils.game_logging",
+    "core.basic_logic",
+    "core.map",
+    "entities.player",
+]
 LOG_LEVEL = "DEBUG"
 
 # project structure

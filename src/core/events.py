@@ -1,7 +1,7 @@
 import importlib
 from loguru import logger
 import os
-from utils.config import ROOT_PATH
+from utils.config import SRC_PATH
 
 
 class Event:
@@ -146,21 +146,21 @@ class EventsManager:
 
     def import_multi_file_module(self, name):
         dir_name = name.replace(".", "/")
-        if os.path.isfile(f"{ROOT_PATH}/{dir_name}/render.py"):
+        if os.path.isfile(f"{SRC_PATH}/{dir_name}/render.py"):
             logger.debug(f"Found render.py in {name}")
             self.import_single_file_module(f"{name}.render")
-        if os.path.isfile(f"{ROOT_PATH}/{dir_name}/logic.py"):
+        if os.path.isfile(f"{SRC_PATH}/{dir_name}/logic.py"):
             logger.debug(f"Found logic.py in {name}")
             self.import_single_file_module(f"{name}.logic")
 
     def import_module(self, name):
         logger.debug(f"Processing module: {name}")
         dir_name = name.replace(".", "/")
-        if os.path.isfile(f"{ROOT_PATH}/{dir_name}.py"):
+        if os.path.isfile(f"{SRC_PATH}/{dir_name}.py"):
             # is a single-file module
             logger.debug(f"Is a single-file module: {name}")
             self.import_single_file_module(name)
-        elif os.path.isdir(f"{ROOT_PATH}/{dir_name}"):
+        elif os.path.isdir(f"{SRC_PATH}/{dir_name}"):
             # is a multi-file module
             logger.debug(f"Is a multi-file module: {name}")
             self.import_multi_file_module(name)

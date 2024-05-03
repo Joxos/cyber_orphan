@@ -50,4 +50,6 @@ DEFAULT_MODULES = [
 LOG_LEVEL = "DEBUG"
 
 # project structure
-ROOT_PATH = os.path.dirname(os.path.dirname(f"{os.path.abspath(__file__)}"))
+ROOT_PATH = os.path.join(os.path.dirname(__file__), "../..")
+SRC_PATH = os.path.join(ROOT_PATH, "src")
+ASSETS_PATH = os.path.join(ROOT_PATH, "assets")

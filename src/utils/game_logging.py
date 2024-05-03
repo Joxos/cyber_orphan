@@ -3,7 +3,8 @@ Logging utils and DI for game events.
 """
 from loguru import logger
 import sys
-from utils.config import LOG_LEVEL
+from utils.config import LOG_LEVEL, ROOT_PATH, SRC_PATH, ASSETS_PATH
+import os
 from core.events import (
     EventsManager,
     OnKeyPress,
@@ -11,6 +12,7 @@ from core.events import (
     OnLeftMousePress,
     OnRightMousePress,
     OnLeftMouseRelease,
+    BeforeGameInit,
     OnRightMouseRelease,
 )
 from utils.utils import coordinate_to_grid
@@ -82,6 +84,14 @@ def log_key_release(game, event: OnKeyRelease, em: EventsManager):
     logger.debug(f"Key released: {get_key_by_value(event.key)}")
 
 
+def log_path_solving(game, event: BeforeGameInit, em: EventsManager):
+    logger.debug("Path solved:")
+    logger.debug(f"ROOT_PATH is {os.path.abspath(ROOT_PATH)}")
+    logger.debug(f"SRC_PATH is {os.path.abspath(SRC_PATH)}")
+    logger.debug(f"ASSETS_PATH is {os.path.abspath(ASSETS_PATH)}")
+    logger.debug(f"Current working directory is {os.getcwd()}")
+
+
 subscriptions = {
     # OnLeftMouseRelease: log_left_mouse_release,
     # OnRightMouseRelease: log_right_mouse_release,
@@ -89,4 +99,5 @@ subscriptions = {
     # OnRightMousePress: log_right_mouse_press,
     OnKeyPress: log_key_press,
     OnKeyRelease: log_key_release,
+    BeforeGameInit: log_path_solving,
 }

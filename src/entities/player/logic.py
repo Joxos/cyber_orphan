@@ -1,18 +1,22 @@
 import arcade
-from .player import Player
+from .detector import Detector
 from core.events import (
     EventsManager,
     OnGameInit,
     OnKeyPress,
 )
-from utils.config import CELL_WIDTH, ROOT_PATH
+from utils.config import CELL_WIDTH, ASSETS_PATH
 
 
 def player_init(game, event: OnGameInit, em: EventsManager):
-    game.player = Player(*game.map.center_index)
+    game.player = Detector(*game.map.center_index)
 
+    game.player_right_texture = arcade.load_texture(f"{ASSETS_PATH}/detector.png")
+    game.player_left_texture = arcade.load_texture(
+        f"{ASSETS_PATH}/detector.png", mirrored=True
+    )
     game.player_sprite = arcade.Sprite(
-        f"{ROOT_PATH}/../assets/detector.png",
+        f"{ASSETS_PATH}/detector.png",
         scale=0.15,
     )
     game.player_sprite.center_x = game.player.x * CELL_WIDTH + CELL_WIDTH / 2
@@ -29,9 +33,11 @@ def player_move(game, event: OnKeyPress, em: EventsManager):
     elif event.key == arcade.key.A:
         game.player.x -= 1
         game.player_sprite.center_x -= CELL_WIDTH
+        game.player_sprite.texture = game.player_left_texture
     elif event.key == arcade.key.D:
         game.player.x += 1
         game.player_sprite.center_x += CELL_WIDTH
+        game.player_sprite.texture = game.player_right_texture
 
 
 subscriptions = {

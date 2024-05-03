@@ -5,11 +5,8 @@ import os
 ROW_COUNT = 20
 COLUMN_COUNT = 20
 
-# terrain configuration
-TERRAIN_SCALE = 10
-TERRAIN_COMPLEXITY = 100
-TERRAIN_AMPLITUDE = 0.6
-SEED = None
+# map events
+EVENT_PROBABILITY = 0.01
 
 # display configuration
 GAME_TITLE = "The Action"

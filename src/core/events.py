@@ -152,6 +152,9 @@ class EventsManager:
         if os.path.isfile(f"{SRC_PATH}/{dir_name}/logic.py"):
             logger.debug(f"Found logic.py in {name}")
             self.import_single_file_module(f"{name}.logic")
+        if os.path.isfile(f"{SRC_PATH}/{dir_name}/events.py"):
+            logger.debug(f"Found events.py in {name}")
+            self.import_single_file_module(f"{name}.events")
 
     def import_module(self, name):
         logger.debug(f"Processing module: {name}")

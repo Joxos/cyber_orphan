@@ -11,11 +11,11 @@ class Runtime:
         self.events_manager = EventsManager()
         self.loader.set_events_manager(self.events_manager)
         self.events_manager.register(DEFAULT_EVENT_LIST)
+        self.loader.import_modules(DEFAULT_MODULES)
+        self.events_manager.verbose_subscription_info()
 
         self.events_manager.new_event(BeforeGameInit())
         self.game = Game(width, height, title)
         self.events_manager.set_game(self.game)
 
-        self.loader.import_modules(DEFAULT_MODULES)
-        self.events_manager.verbose_subscription_info()
         self.game.setup(self.events_manager)

@@ -43,7 +43,7 @@ DEFAULT_MODULES = [
     "core.map",
     "structures.home",
     "entities.player",
-    "entities.map_events"
+    "entities.map_events",
 ]
 LOG_LEVEL = "DEBUG"
 

@@ -1,7 +1,4 @@
-import importlib
 from loguru import logger
-import os
-from utils.config import SRC_PATH
 
 
 class Event:
@@ -96,7 +93,7 @@ class EventsManager:
         self.events = {}
         self.game_ref = None
 
-    def set_game_ref(self, game_ref):
+    def set_game(self, game_ref):
         self.game_ref = game_ref
 
     def register(self, event):
@@ -134,45 +131,6 @@ class EventsManager:
                         )
                     func(self.game_ref, new_event, self)
                 return
-
-    def import_single_file_module(self, name):
-        module = importlib.import_module(name)
-        if hasattr(module, "subscriptions"):
-            logger.debug(f"Found subscriptions in {name}")
-            self.multi_subscribe(module.subscriptions)
-        if hasattr(module, "registrations"):
-            logger.debug(f"Found registrations in {name}")
-            self.register(module.registrations)
-
-    def import_multi_file_module(self, name):
-        dir_name = name.replace(".", "/")
-        if os.path.isfile(f"{SRC_PATH}/{dir_name}/render.py"):
-            logger.debug(f"Found render.py in {name}")
-            self.import_single_file_module(f"{name}.render")
-        if os.path.isfile(f"{SRC_PATH}/{dir_name}/logic.py"):
-            logger.debug(f"Found logic.py in {name}")
-            self.import_single_file_module(f"{name}.logic")
-        if os.path.isfile(f"{SRC_PATH}/{dir_name}/events.py"):
-            logger.debug(f"Found events.py in {name}")
-            self.import_single_file_module(f"{name}.events")
-
-    def import_module(self, name):
-        logger.debug(f"Processing module: {name}")
-        dir_name = name.replace(".", "/")
-        if os.path.isfile(f"{SRC_PATH}/{dir_name}.py"):
-            # is a single-file module
-            logger.debug(f"Is a single-file module: {name}")
-            self.import_single_file_module(name)
-        elif os.path.isdir(f"{SRC_PATH}/{dir_name}"):
-            # is a multi-file module
-            logger.debug(f"Is a multi-file module: {name}")
-            self.import_multi_file_module(name)
-        else:
-            logger.error(f"Module not found: {name}")
-
-    def import_modules(self, names):
-        for name in names:
-            self.import_module(name)
 
     def verbose_subscription_info(self):
         logger.info("Event subscriptions:")

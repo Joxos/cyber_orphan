@@ -15,13 +15,12 @@ from core.events import (
 
 
 class Game(arcade.Window):
-    def __init__(self, width, height, title, events_manager=None):
+    def __init__(self, width, height, title):
         super().__init__(width, height, title)
-        self.events_manager = events_manager
-        self.events_manager.set_game_ref(self)
-        self.events_manager.new_event(OnGameInit())
 
-    def setup(self):
+    def setup(self, events_manager):
+        self.events_manager = events_manager
+        self.events_manager.new_event(OnGameInit())
         self.events_manager.new_event(OnGameSetup())
 
     def on_draw(self):

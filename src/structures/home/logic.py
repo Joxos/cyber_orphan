@@ -16,7 +16,6 @@ def home_init(game, event: OnGameInit, em: EventsManager):
     )
     game.home_sprite.center_x = game.map.center_index[0] * CELL_WIDTH + CELL_WIDTH / 2
     game.home_sprite.center_y = game.map.center_index[1] * CELL_WIDTH + CELL_WIDTH / 2
-    game.draw_list.append(game.home_sprite)
 
 
 subscriptions = {

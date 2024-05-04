@@ -1,5 +1,5 @@
 from collections import deque
-from .map_events.map_event import get_random_event_type
+from entities.map_events.map_event import get_random_event_type
 from utils.config import EVENT_PROBABILITY
 from random import random
 from utils.game_logging import logger

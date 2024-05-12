@@ -18,6 +18,7 @@ class Plugin:
         self.subscriptions = {}
 
     def setup(self):
+        """Plug in."""
         self.runtime.events_manager.register(self.registrations)
         self.runtime.events_manager.multi_subscribe(self.subscriptions)
 

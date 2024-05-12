@@ -145,7 +145,6 @@ DEFAULT_EVENT_LIST = [
     OnLeftMouseRelease,
     OnRightMouseRelease,
     OnGameSetup,
-    BeforeGameInit,
     OnGameInit,
     OnUpdate,
     OnKeyPress,

@@ -7,12 +7,14 @@ from utils.config import (
     GAME_TITLE,
     SCREEN_HEIGHT,
     SCREEN_WIDTH,
+    PLUGINS_PATH,
 )
 from core.layout import layout_manager, LAYOUTS
 from core.runtime import Runtime
-from core.events import EventsManager
+from core.events import EventsManager, DEFAULT_EVENT_LIST
 from core.plugin import PluginManager
 from core.game import Game
+import arcade
 
 
 def mix_color(a, b):
@@ -57,4 +59,16 @@ def get_whole_runtime():
     events_manager.runtime, runtime.events_manager = runtime, events_manager
     runtime.game, game.runtime = game, runtime
     plugin_manager.runtime, runtime.plugin_manager = runtime, plugin_manager
+
+    events_manager.register(DEFAULT_EVENT_LIST)
+    plugin_manager.load_plugins(PLUGINS_PATH)
+    plugin_manager.setup_plugins()
+    game.setup()
     return runtime, plugin_manager, events_manager, game
+
+
+def get_key_by_value(value):
+    for key, val in arcade.key.__dict__.items():
+        if val == value:
+            return key
+    return None

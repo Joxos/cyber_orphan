@@ -8,7 +8,7 @@ from utils.utils import grid_to_central_coordinate
 from utils.game_logging import logger
 from utils.config import ROW_COUNT, COLUMN_COUNT, CELL_WIDTH
 from core.plugin import Plugin, PluginConfig
-from core.events import OnGameSetup,OnDraw,OnGameInit
+from core.events import OnGameInit
 
 
 class MapConfig(PluginConfig):
@@ -16,6 +16,7 @@ class MapConfig(PluginConfig):
         self.row_count = row_count
         self.column_count = column_count
         self.cell_width = cell_width
+
 
 class Map(Plugin):
     def __init__(self, runtime: Runtime):
@@ -58,7 +59,9 @@ class Map(Plugin):
             self.cell_sprites_2d.append([])
             for column in range(self.column_count):
                 sprite = arcade.Sprite()
-                sprite.center_x, sprite.center_y = grid_to_central_coordinate(row, column)
+                sprite.center_x, sprite.center_y = grid_to_central_coordinate(
+                    row, column
+                )
                 if (row + column) % 2 == 0:
                     sprite.texture = self.texture_1
                 else:

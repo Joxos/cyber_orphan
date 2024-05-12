@@ -8,7 +8,7 @@ from utils.utils import grid_to_central_coordinate
 from utils.game_logging import logger
 from utils.config import ROW_COUNT, COLUMN_COUNT, CELL_WIDTH
 from core.plugin import Plugin, PluginConfig
-from core.events import OnGameSetup,OnDraw
+from core.events import OnGameSetup,OnDraw,OnGameInit
 
 
 class MapConfig(PluginConfig):
@@ -20,18 +20,12 @@ class MapConfig(PluginConfig):
 class Map(Plugin):
     def __init__(self, runtime: Runtime):
         super().__init__(runtime)
-
-    @property
-    def registrations(self):
-        return []
-    
-    @property
-    def subscriptions(self):
-        return {OnGameSetup: self.setup}
+        self.subscriptions = {OnGameInit: self.map_init}
 
     def setup(self):
         super().setup()
 
+    def map_init(self, event: OnGameInit):
         config = MapConfig(ROW_COUNT, COLUMN_COUNT, CELL_WIDTH)
         self.row_count = config.row_count
         self.column_count = config.column_count
@@ -81,7 +75,7 @@ class Map(Plugin):
                 map_event.sprite.center_y,
             ) = grid_to_central_coordinate(map_event.location[0], map_event.location[1])
             map_event.sprite.texture = arcade.load_texture(map_event.image_path)
-            self.draw_list.append(map_event.sprite)
+            self.runtime.game.draw_list.append(map_event.sprite)
 
     def generate_map_events(self):
         # every grid has a 1/EVENT_PROBABILITY chance of having an event using MapEventType.get_random_event_type()

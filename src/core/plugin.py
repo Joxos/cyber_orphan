@@ -14,20 +14,12 @@ class PluginConfig:
 class Plugin:
     def __init__(self, runtime: Runtime):
         self.runtime = runtime
+        self.registrations = []
+        self.subscriptions = {}
 
     def setup(self):
         self.runtime.events_manager.register(self.registrations)
         self.runtime.events_manager.multi_subscribe(self.subscriptions)
-
-    @property
-    def registrations(self):
-        """Return a list of event classes."""
-        return []
-
-    @property
-    def subscriptions(self):
-        """Return a dictionary of event classes and their callbacks."""
-        return {}
 
 
 class PluginManager:
@@ -67,9 +59,9 @@ class PluginManager:
         ]
         return local_plugins
 
-    def activate_plugins(self):
+    def setup_plugins(self):
         for plugin in self.plugins:
-            plugin.activate(self.runtime)
+            plugin.setup()
 
 
 if __name__ == "__main__":

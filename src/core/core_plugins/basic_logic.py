@@ -5,18 +5,10 @@ from core.runtime import Runtime
 class BasicLogic(Plugin):
     def __init__(self, runtime: Runtime):
         super().__init__(runtime)
+        self.subscriptions = {OnMouseMotion: self.on_mouse_motion, OnDraw: self.on_draw, OnGameInit: self.on_game_init}
 
     def setup(self):
         super().setup()
-
-    @property
-    def subscriptions(self):
-        return {OnMouseMotion: self.on_mouse_motion, OnDraw: self.on_draw, OnGameInit: self.on_game_init}
-    
-    @property
-    def registrations(self):
-        return []
-
 
     def on_mouse_motion(self, event: OnMouseMotion):
         # realtime mouse position

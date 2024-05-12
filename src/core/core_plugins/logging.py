@@ -1,7 +1,17 @@
 from loguru import logger
 from utils.config import ROOT_PATH, SRC_PATH, ASSETS_PATH
 import os
-from core.events import OnKeyPress, OnKeyRelease, OnGameInit
+from core.events import (
+    OnKeyPress,
+    OnKeyRelease,
+    OnGameInit,
+    OnLeftMousePress,
+    OnLeftMouseRelease,
+    OnRightMousePress,
+    OnRightMouseRelease,
+)
+from utils.utils import coordinate_to_grid
+from core.layout import layout_manager, LAYOUTS
 from core.plugin import Plugin
 
 from utils.utils import get_key_by_value
@@ -14,6 +24,10 @@ class Logging(Plugin):
             OnKeyPress: self.log_key_press,
             OnKeyRelease: self.log_key_release,
             OnGameInit: self.log_path_solving,
+            OnLeftMousePress: self.log_left_mouse_press,
+            OnRightMousePress: self.log_right_mouse_press,
+            OnLeftMouseRelease: self.log_left_mouse_release,
+            OnRightMouseRelease: self.log_right_mouse_release,
         }
 
     def setup(self):
@@ -32,44 +46,50 @@ class Logging(Plugin):
         logger.debug(f"ASSETS_PATH is {os.path.abspath(ASSETS_PATH)}")
         logger.debug(f"Current working directory is {os.getcwd()}")
 
-    # def log_left_mouse_press(game, event: OnLeftMousePress, em: EventsManager):
-    #     if layout_manager.on_layout(LAYOUTS.GRID, event.x, event.y):
-    #         row, column = coordinate_to_grid(event.x, event.y)
-    #         logger.debug(
-    #             f"Left mouse press on cell. Coordinates: ({event.x}, {event.y}). Grid coordinates: ({row}, {column}), Height: {game.map.height_map[row][column]}, Color: {game.cell_sprites_2d[row][column].color}"
-    #         )
-    #         return
+    def log_left_mouse_press(self, event: OnLeftMousePress):
+        if layout_manager.on_layout(LAYOUTS.GRID, event.x, event.y):
+            row, column = coordinate_to_grid(event.x, event.y)
+            logger.debug(
+                f"Left mouse press on cell. Coordinates: ({event.x}, {event.y}). Grid coordinates: ({row}, {column})"
+            )
+            return
 
-    #     logger.debug(f"Left mouse press on sidebar. Coordinates: ({event.x}, {event.y}).")
+        logger.debug(
+            f"Left mouse press on sidebar. Coordinates: ({event.x}, {event.y})."
+        )
 
-    # def log_right_mouse_press(game, event: OnRightMousePress, em: EventsManager):
-    #     if layout_manager.on_layout(LAYOUTS.GRID, event.x, event.y):
-    #         row, column = coordinate_to_grid(event.x, event.y)
-    #         logger.debug(
-    #             f"Right mouse press on cell. Coordinates: ({event.x}, {event.y}). Grid coordinates: ({row}, {column}), Height: {game.map.height_map[row][column]}, Color: {game.cell_sprites_2d[row][column].color}"
-    #         )
-    #         return
+    def log_right_mouse_press(self, event: OnRightMousePress):
+        if layout_manager.on_layout(LAYOUTS.GRID, event.x, event.y):
+            row, column = coordinate_to_grid(event.x, event.y)
+            logger.debug(
+                f"Right mouse press on cell. Coordinates: ({event.x}, {event.y}). Grid coordinates: ({row}, {column})"
+            )
+            return
 
-    #     logger.debug(f"Right mouse press on sidebar. Coordinates: ({event.x}, {event.y}).")
+        logger.debug(
+            f"Right mouse press on sidebar. Coordinates: ({event.x}, {event.y})."
+        )
 
-    # def log_left_mouse_release(game, event: OnLeftMouseRelease, em: EventsManager):
-    #     if layout_manager.on_layout(LAYOUTS.GRID, event.x, event.y):
-    #         row, column = coordinate_to_grid(event.x, event.y)
-    #         logger.debug(
-    #             f"Left mouse release on cell. Coordinates: ({event.x}, {event.y}). Grid coordinates: ({row}, {column}), Height: {game.map.height_map[row][column]}, Color: {game.cell_sprites_2d[row][column].color}"
-    #         )
-    #         return
+    def log_left_mouse_release(self, event: OnLeftMouseRelease):
+        if layout_manager.on_layout(LAYOUTS.GRID, event.x, event.y):
+            row, column = coordinate_to_grid(event.x, event.y)
+            logger.debug(
+                f"Left mouse release on cell. Coordinates: ({event.x}, {event.y}). Grid coordinates: ({row}, {column})"
+            )
+            return
 
-    #     logger.debug(f"Left mouse release on sidebar. Coordinates: ({event.x}, {event.y}).")
+        logger.debug(
+            f"Left mouse release on sidebar. Coordinates: ({event.x}, {event.y})."
+        )
 
-    # def log_right_mouse_release(game, event: OnRightMouseRelease, em: EventsManager):
-    #     if layout_manager.on_layout(LAYOUTS.GRID, event.x, event.y):
-    #         row, column = coordinate_to_grid(event.x, event.y)
-    #         logger.debug(
-    #             f"Right mouse release on cell. Coordinates: ({event.x}, {event.y}). Grid coordinates: ({row}, {column}), Height: {game.map.height_map[row][column]}, Color: {game.cell_sprites_2d[row][column].color}"
-    #         )
-    #         return
+    def log_right_mouse_release(self, event: OnRightMouseRelease):
+        if layout_manager.on_layout(LAYOUTS.GRID, event.x, event.y):
+            row, column = coordinate_to_grid(event.x, event.y)
+            logger.debug(
+                f"Right mouse release on cell. Coordinates: ({event.x}, {event.y}). Grid coordinates: ({row}, {column})"
+            )
+            return
 
-    #     logger.debug(
-    #         f"Right mouse release on sidebar. Coordinates: ({event.x}, {event.y})."
-    #     )
+        logger.debug(
+            f"Right mouse release on sidebar. Coordinates: ({event.x}, {event.y})."
+        )

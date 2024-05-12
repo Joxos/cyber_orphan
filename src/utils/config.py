@@ -34,20 +34,10 @@ GRID_HEIGHT = CELL_WIDTH * ROW_COUNT
 SCREEN_WIDTH = GRID_WIDTH
 SCREEN_HEIGHT = GRID_HEIGHT
 
-# consequence matters
-# 1. game_logging is the first one for logging
-# 2. when drawing, the order matters to determine which layer is on top
-DEFAULT_MODULES = [
-    "utils.game_logging",
-    "core.basic_logic",
-    "core.map",
-    "structures.home",
-    "entities.player",
-    "entities.map_events",
-]
 LOG_LEVEL = "DEBUG"
 
 # project structure
 ROOT_PATH = os.path.join(os.path.dirname(__file__), "../..")
 SRC_PATH = os.path.join(ROOT_PATH, "src")
 ASSETS_PATH = os.path.join(ROOT_PATH, "assets")
+PLUGINS_PATH = os.path.join(SRC_PATH, "core", "plugins")

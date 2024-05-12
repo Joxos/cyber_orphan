@@ -4,8 +4,15 @@ from utils.config import (
     BOTTOM_SIDEBAR_HEIGHT,
     COLUMN_COUNT,
     ROW_COUNT,
+    GAME_TITLE,
+    SCREEN_HEIGHT,
+    SCREEN_WIDTH,
 )
 from core.layout import layout_manager, LAYOUTS
+from core.runtime import Runtime
+from core.events import EventsManager
+from core.plugin import PluginManager
+from core.game import Game
 
 
 def mix_color(a, b):
@@ -38,3 +45,16 @@ def row_column_on_grid(row, column):
     if row < 0 or row >= ROW_COUNT or column < 0 or column >= COLUMN_COUNT:
         return False
     return True
+
+
+def get_whole_runtime():
+    runtime, plugin_manager, events_manager, game = (
+        Runtime(),
+        PluginManager(),
+        EventsManager(),
+        Game(SCREEN_WIDTH, SCREEN_HEIGHT, GAME_TITLE),
+    )
+    events_manager.runtime, runtime.events_manager = runtime, events_manager
+    runtime.game, game.runtime = game, runtime
+    plugin_manager.runtime, runtime.plugin_manager = runtime, plugin_manager
+    return runtime, plugin_manager, events_manager, game

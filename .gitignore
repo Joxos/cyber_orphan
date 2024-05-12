@@ -4,3 +4,4 @@ server/server.key
 server/server.crt
 server/users.json
 client/server.crt
+.vscode/

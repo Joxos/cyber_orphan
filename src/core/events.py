@@ -91,10 +91,7 @@ IGNORED_EVENTS_LOGGING = [OnUpdate, OnDraw, OnMouseMotion]
 class EventsManager:
     def __init__(self):
         self.events = {}
-        self.game_ref = None
-
-    def set_game(self, game_ref):
-        self.game_ref = game_ref
+        self.runtime = None
 
     def register(self, event):
         if isinstance(event, list):
@@ -129,7 +126,7 @@ class EventsManager:
                         logger.debug(
                             f"Calling function: {func.__name__} with event: {new_event.__class__.__name__}"
                         )
-                    func(self.game_ref, new_event, self)
+                    func(new_event)
                 return
 
     def verbose_subscription_info(self):

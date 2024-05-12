@@ -40,4 +40,4 @@ LOG_LEVEL = "DEBUG"
 ROOT_PATH = os.path.join(os.path.dirname(__file__), "../..")
 SRC_PATH = os.path.join(ROOT_PATH, "src")
 ASSETS_PATH = os.path.join(ROOT_PATH, "assets")
-PLUGINS_PATH = os.path.join(SRC_PATH, "core", "plugins")
+PLUGINS_PATH = os.path.join(SRC_PATH, "core", "core_plugins")

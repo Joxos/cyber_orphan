@@ -1,5 +1,5 @@
 from core.runtime import Runtime
-from utils.game_logging import logger
+from utils.logger import logger
 import os
 import importlib.util
 import concurrent.futures

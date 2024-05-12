@@ -5,7 +5,7 @@ from entities.map_events.map_event import get_random_event_type
 from utils.config import EVENT_PROBABILITY
 from random import random
 from utils.utils import grid_to_central_coordinate
-from utils.game_logging import logger
+from utils.logger import logger
 from utils.config import ROW_COUNT, COLUMN_COUNT, CELL_WIDTH
 from core.plugin import Plugin, PluginConfig
 from core.events import OnGameInit

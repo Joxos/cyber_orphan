@@ -1,5 +1,5 @@
 from random import randint, random
-from utils.game_logging import logger
+from utils.logger import logger
 from utils.config import ASSETS_PATH
 
 
